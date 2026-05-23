@@ -1,0 +1,84 @@
+@model List<YandexGoClone.Models.Order>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; }
+        .header { background: #FFD700; padding: 16px 20px; display: flex; align-items: center; gap: 16px; }
+        .back-btn { font-size: 22px; text-decoration: none; color: #000; }
+        .header h1 { font-family: 'Pacifico', cursive; font-size: 22px; color: #000; }
+        .container { padding: 16px; }
+        .empty { text-align: center; padding: 60px 20px; color: #888; }
+        .empty-icon { font-size: 64px; margin-bottom: 16px; }
+        .empty-text { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #333; }
+        .btn-new { display: inline-block; margin-top: 20px; padding: 14px 28px; background: #FFD700; border-radius: 14px; font-weight: 700; text-decoration: none; color: #000; }
+        .order-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+        .order-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .order-id { font-size: 13px; color: #888; }
+        .status { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+        .status-new { background: #fff3cd; color: #856404; }
+        .status-inway { background: #cfe2ff; color: #084298; }
+        .status-done { background: #d1e7dd; color: #0f5132; }
+        .addr-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+        .addr-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+        .dot-from { background: #FFD700; border: 2px solid #000; }
+        .dot-to { background: #000; }
+        .addr-text { font-size: 14px; color: #333; }
+        .order-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid #f0f0f0; }
+        .price { font-size: 16px; font-weight: 700; }
+        .date { font-size: 12px; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="back-btn">←</a>
+        <h1>Мои заказы</h1>
+    </div>
+    <div class="container">
+        @if (!Model.Any())
+        {
+            <div class="empty">
+                <div class="empty-icon">📦</div>
+                <div class="empty-text">Заказов пока нет</div>
+                <div>Создайте первый заказ!</div>
+                <a href="/Order/Delivery" class="btn-new">Заказать доставку</a>
+            </div>
+        }
+        else
+        {
+            @foreach (var order in Model)
+            {
+                var statusClass = order.Status == "Новый" ? "status-new" : order.Status == "В пути" ? "status-inway" : "status-done";
+                <div class="order-card">
+                    <div class="order-header">
+                        <span class="order-id">Заказ #@order.Id</span>
+                        <span class="status @statusClass">@order.Status</span>
+                    </div>
+                    <div class="addr-row">
+                        <div class="addr-dot dot-from"></div>
+                        <div class="addr-text">@order.FromAddress</div>
+                    </div>
+                    <div class="addr-row">
+                        <div class="addr-dot dot-to"></div>
+                        <div class="addr-text">@order.ToAddress</div>
+                    </div>
+                    <div class="order-footer">
+                        <span class="price">@order.Price сом</span>
+                        <span class="date">@order.CreatedAt.ToString("dd.MM.yyyy HH:mm")</span>
+                    </div>
+                </div>
+            }
+            <a href="/Order/Delivery" style="display:block; text-align:center; margin-top:8px; padding:14px; background:#FFD700; border-radius:14px; font-weight:700; text-decoration:none; color:#000;">
+                + Новый заказ
+            </a>
+        }
+    </div>
+</body>
+</html>

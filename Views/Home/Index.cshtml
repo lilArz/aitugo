@@ -1,0 +1,174 @@
+﻿@{
+    ViewData["Title"] = "aitugo";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; }
+        .header { padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .menu-btn { font-size: 22px; cursor: pointer; }
+        .brand-center { text-align: center; }
+        .brand { font-family: 'Pacifico', cursive; font-size: 22px; color: #000; }
+        .address { font-size: 13px; color: #555; margin-top: 2px; }
+        .address span { color: #000; font-weight: 600; }
+        .avatar { width: 36px; height: 36px; background: #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px 20px; }
+        .card { background: #f7f7f7; border-radius: 16px; padding: 16px; cursor: pointer; position: relative; overflow: hidden; min-height: 110px; display: flex; flex-direction: column; justify-content: flex-end; transition: transform 0.15s; }
+        .card:hover { transform: scale(0.97); }
+        .card-emoji { font-size: 48px; position: absolute; top: 8px; right: 8px; }
+
+        /* КЛАСС ДЛЯ НОВЫХ ПОТРЯСАЮЩИХ 3D КАРТИНОК */
+        .card-img { width: 75px; height: auto; position: absolute; top: 4px; right: 4px; object-fit: contain; }
+
+        .card-label { font-size: 15px; font-weight: 600; color: #000; z-index: 2; }
+        .card-sub { font-size: 12px; color: #888; margin-top: 2px; z-index: 2; }
+        .badge { position: absolute; top: 10px; left: 10px; background: #ff3b30; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; z-index: 3; }
+        .badge-new { background: #ff3b30; }
+        .section { padding: 8px 20px 16px; }
+        .goto-btn { width: 100%; padding: 16px 20px; background: #f7f7f7; border-radius: 16px; border: none; display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 500; cursor: pointer; }
+        .goto-arrow { margin-left: auto; font-size: 20px; }
+        .recent { padding: 0 20px; }
+        .recent-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+        .recent-item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer; }
+        .recent-icon { width: 40px; height: 40px; background: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .recent-addr { font-size: 15px; font-weight: 500; }
+        .recent-sub { font-size: 13px; color: #888; }
+        .recent-time { margin-left: auto; font-size: 13px; color: #888; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="menu-btn" onclick="window.location.href='/Profile/Index'">☰</div>
+
+        <div class="brand-center">
+            <div class="brand">aitugo</div>
+            <div class="address">
+                <span>@ViewBag.Address</span> ➤
+            </div>
+        </div>
+
+        <div class="avatar" onclick="window.location.href='/Profile/Index'">
+            @(ViewBag.UserName?.ToString().Substring(0,1).ToUpper())
+        </div>
+    </div>
+
+    <div class="grid">
+
+        <div class="card" onclick="window.location.href='/Order/Delivery'">
+            <img src="/img/delivery_3d.png"
+                 style="width: 85px; height: 85px; position: absolute; bottom: 0; right: 0; object-fit: contain; object-position: bottom right;"
+                 alt="Доставка" />
+            <div class="card-label">Доставка</div>
+        </div>
+
+        <div class="card" onclick="window.location.href='/Order/Food'">
+            <span class="badge">-40%</span>
+
+            <img src="/img/food_3d.png"
+                 style="width: 85px; height: 85px; position: absolute; bottom: 0; right: 0; object-fit: contain; object-position: bottom right;"
+                 alt="Еда" />
+
+            <div class="card-label">Еда</div>
+        </div>
+
+        <div class="card" onclick="window.location.href='/Order/Taxi'">
+            <img src="/img/taxi_3d.png"
+                 style="width: 85px; height: 85px; position: absolute; bottom: 0; right: 0; object-fit: contain; object-position: bottom right;"
+                 alt="Такси" />
+
+            <div class="card-label">Такси</div>
+            <div class="card-sub">от 4 мин</div>
+        </div>
+
+        <div class="card" onclick="window.location.href='/Order/Scooter'">
+            <img src="/img/scooter_3d.png"
+                 style="width: 85px; height: 85px; position: absolute; bottom: 0; right: 0; object-fit: contain; object-position: bottom right;"
+                 alt="Самокаты" />
+
+            <div class="card-label">Самокаты</div>
+        </div>
+
+        <div class="card" onclick="window.location.href='/Order/Intercity'">
+            <span class="badge badge-new">Новое</span>
+
+            <img src="/img/intercity_3d.png"
+                 style="width: 85px; height: 85px; position: absolute; bottom: 0; right: 0; object-fit: contain; object-position: bottom right;"
+                 alt="Межгород" />
+
+            <div class="card-label">Межгород</div>
+        </div>
+
+        <div class="card" onclick="window.location.href='/Order/Cargo'">
+            <img src="/img/cargo_3d.png"
+                 style="width: 85px; height: 85px; position: absolute; bottom: 0; right: 0; object-fit: contain; object-position: bottom right;"
+                 alt="Грузовой" />
+
+            <div class="card-label">Грузовой</div>
+        </div>
+
+    </div>
+
+    <div class="section">
+        <button class="goto-btn" onclick="window.location.href='/Order/Delivery'">
+            🚖 Куда едем?
+            <span class="goto-arrow">➤</span>
+        </button>
+    </div>
+
+    <div class="recent">
+
+        <div class="recent-title">Недавние адреса</div>
+
+        <div class="recent-item">
+            <div class="recent-icon">📍</div>
+
+            <div>
+                <div class="recent-addr">Байтемирова 9А</div>
+                <div class="recent-sub">Ош</div>
+            </div>
+
+            <div class="recent-time">25 мин</div>
+        </div>
+
+        <div class="recent-item">
+            <div class="recent-icon">📍</div>
+
+            <div>
+                <div class="recent-addr">Верхне-Увамская 138А</div>
+                <div class="recent-sub">Бишкек</div>
+            </div>
+
+            <div class="recent-time">17 мин</div>
+        </div>
+
+    </div>
+
+    <div style="padding: 16px 20px 32px;">
+
+        <a href="/Order/MyOrders"
+           style="display:flex; align-items:center; gap:12px; background:#f7f7f7; border-radius:16px; padding:16px; text-decoration:none; color:#000;">
+
+            <span style="font-size:24px;">📋</span>
+            <span style="font-weight:600;">Мои заказы</span>
+            <span style="margin-left:auto;">›</span>
+        </a>
+
+        <a href="/Order/CourierPanel"
+           style="display:flex; align-items:center; gap:12px; background:#1a1a1a; border-radius:16px; padding:16px; text-decoration:none; color:#FFD700; margin-top:10px;">
+
+            <span style="font-size:24px;">🛵</span>
+            <span style="font-weight:600;">Панель курьера</span>
+            <span style="margin-left:auto;">›</span>
+        </a>
+
+    </div>
+
+</body>
+</html>

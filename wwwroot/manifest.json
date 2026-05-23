@@ -1,0 +1,21 @@
+{
+  "name": "aitugo",
+  "short_name": "aitugo",
+  "description": "Курьерская доставка",
+  "start_url": "/Home/Index",
+  "display": "standalone",
+  "background_color": "#FFD700",
+  "theme_color": "#FFD700",
+  "icons": [
+    {
+      "src": "/img/aotugo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/aotugo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
