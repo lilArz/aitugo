@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=yandexgo.db"));
+    options.UseSqlite("Data Source=/tmp/yandexgo.db"));
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
@@ -22,12 +22,17 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// ИЗМЕНИЛИ ЗДЕСЬ: теперь дефолтный экшен — Splash вместо Index
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Splash}/{id?}");

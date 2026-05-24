@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YandexGoClone")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+184ad0b542e8c7fd9d284551541a96ee1622227d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ee1fa195b39ca1508da64ff51bb7655dedf46e2")]
 [assembly: System.Reflection.AssemblyProductAttribute("YandexGoClone")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YandexGoClone")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
